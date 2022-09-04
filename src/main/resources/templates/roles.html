@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Roles Form</title>
+</head>
+<body>
+	<p>Role Form</p>
+	<form action="#" th:action="@{/saverole}" th:object="${userrole}" method="post">
+	<p>Role Name: <input type="text" th:field="*{role}"/></p>
+	<p><input type="submit" value="Submit" /></p>
+	</form>
+	<p th:text="${roleData}"/>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+</head>
+<body>
+
+	<p>Registration Form</p>
+	<form action="#" th:action="@{/saveregistration}" th:object="${userreg}" method="post">
+	<p>User Name: <input type="text" th:field="*{username}" required/></p>
+	<p>User Password: <input type="password" th:field="*{password}" required/></p>
+	<div th:object = "${userdetail}">
+	<p>Full Name: <input type="text" th:field="*{name}" required/></p>
+	<p>Email: <input type="text" th:field="*{email}" required/></p>
+	</div>
+	<p><input type="submit" value="Submit" /></p>
+	</form>
+	<p th:text="${userData}"/>
+</body>
+</html>

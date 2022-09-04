@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>Logged in as admin</p>
+	<h1>Employees List</h1>  
+	<table border="2" width="70%" cellpadding="2"> 
+	<tr>
+	<th colspan="1">Id</th>
+	<th colspan="1">UserName</th>
+	<th colspan="1">IsActivated</th>
+	<th colspan="1">Role</th>
+	<th colspan="1">Edit</th>
+	<th colspan="1">Delete</th>
+	</tr>  
+   <tr th:each="user : ${list}">
+   <td colspan="1"><span th:text = "${user.userId}"> Id </span></td>  
+   <td colspan="1"><span th:text = "${user.username}"> UserName </span></td>  
+   <td colspan="1"><span th:text = "${user.isActivated}"> isActivated </span></td>  
+   <td colspan="1" th:each="roles : ${user.roles}"><span th:text = "${roles.role}"></span></td>
+   <!-- <td><a th:href="edituser/${user.userId}">Edit</a></td>  -->
+   <td colspan="1"><a th:href="@{'/deleteuser?id=' + ${user.userId}}">Delete</a></td>
+   <td colspan="1"><a th:href="@{'/updateform?id=' + ${user.userId}}">Update</a></td>
+   <!-- <td><a href="deleteuser/${user.userId}">Delete</a></td>  --> 
+  	</tr>   
+   </table>  
+   <br/> 
+    <a href = "/loginform">Logout</a>
+</body>
+</html>

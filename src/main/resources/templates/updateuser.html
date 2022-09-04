@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>Update Form</p>
+	<form action="#" th:action="@{/updateuser}" th:object="${user}" method="post">
+	<p>User Id: <input type="hidden" th:field="*{userId}"  th:value="${#request.getParameter('id')}" th:placeholder="${#request.getParameter('id')}"/></p>
+	<p>User Name: <input type="text" th:field="*{username}"/></p>
+	<p>User Password: <input type="password" th:field="*{password}"/></p>
+	<div th:object = "${userdetail}">
+	<p>Full Name: <input type="text" th:field="*{name}"/></p>
+	<p>Email: <input type="text" th:field="*{email}"/></p>
+	</div>
+	<p><input type="submit" value="Submit" /></p>
+	</form>
+</body>
+</html>
