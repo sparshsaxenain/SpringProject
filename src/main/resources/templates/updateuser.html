@@ -10,10 +10,25 @@
 	<p>User Id: <input type="hidden" th:field="*{userId}"  th:value="${#request.getParameter('id')}" th:placeholder="${#request.getParameter('id')}"/></p>
 	<p>User Name: <input type="text" th:field="*{username}"/></p>
 	<p>User Password: <input type="password" th:field="*{password}"/></p>
+	<label for = "isActivated">Active : </label>
+	<select id="isActivated" name="isActivated">
+	<option th:value=false th:text="False">False</option>
+    <option th:value=true th:text="True" th:selected="selected">True</option>
+	</select>
+	
 	<div th:object = "${userdetail}">
 	<p>Full Name: <input type="text" th:field="*{name}"/></p>
 	<p>Email: <input type="text" th:field="*{email}"/></p>
 	</div>
+	
+	<div th:object = "${userrole}">
+		<label for = "role">ROLE : </label>
+		<select id="role" name="role">
+		<option th:value="ADMIN" th:text="ADMIN">ADMIN</option>
+    	<option th:value="USER" th:text="USER" th:selected="selected">USER</option>
+    	</select>
+	</div>
+	
 	<p><input type="submit" value="Submit" /></p>
 	</form>
 </body>

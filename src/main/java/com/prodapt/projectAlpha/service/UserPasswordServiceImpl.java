@@ -69,6 +69,15 @@ public class UserPasswordServiceImpl implements UserPasswordService {
 			{
 				filluser.getUserDetails().setEmail(userPassword.getUserDetails().getEmail());;
 			}
+			if(Objects.nonNull(userPassword.getIsActivated()))
+			{
+				filluser.setIsActivated(userPassword.getIsActivated());
+			}
+			if(Objects.nonNull(userPassword.getRoles()))
+			{
+				filluser.getRoles().clear();
+				filluser.setRoles(userPassword.getRoles());
+			}
 			return userRepo.save(filluser);
 	}
 

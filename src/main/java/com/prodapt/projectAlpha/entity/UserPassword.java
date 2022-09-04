@@ -62,10 +62,10 @@ public class UserPassword {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isActivated() {
+	public boolean getIsActivated() {
 		return isActivated;
 	}
-	public void setActivated(boolean isActivated) {
+	public void setIsActivated(boolean isActivated) {
 		this.isActivated = isActivated;
 	}
 	public Set<UserRole> getRoles() {

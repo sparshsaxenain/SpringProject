@@ -13,6 +13,8 @@
 	<th colspan="1">UserName</th>
 	<th colspan="1">IsActivated</th>
 	<th colspan="1">Role</th>
+	<th colspan="1">Name</th>
+	<th colspan="1">Email</th>
 	<th colspan="1">Edit</th>
 	<th colspan="1">Delete</th>
 	</tr>  
@@ -21,6 +23,8 @@
    <td colspan="1"><span th:text = "${user.username}"> UserName </span></td>  
    <td colspan="1"><span th:text = "${user.isActivated}"> isActivated </span></td>  
    <td colspan="1" th:each="roles : ${user.roles}"><span th:text = "${roles.role}"></span></td>
+   <td colspan="1" th:each="userDetails : ${user.userDetails}"><span th:text = "${userDetails.name}"></span></td>
+    <td colspan="1" th:each="userDetails : ${user.userDetails}"><span th:text = "${userDetails.email}"></span></td>
    <!-- <td><a th:href="edituser/${user.userId}">Edit</a></td>  -->
    <td colspan="1"><a th:href="@{'/deleteuser?id=' + ${user.userId}}">Delete</a></td>
    <td colspan="1"><a th:href="@{'/updateform?id=' + ${user.userId}}">Update</a></td>

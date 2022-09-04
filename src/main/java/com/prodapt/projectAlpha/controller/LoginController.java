@@ -1,14 +1,14 @@
 package com.prodapt.projectAlpha.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.prodapt.projectAlpha.entity.UserDetails;
 import com.prodapt.projectAlpha.entity.UserPassword;
+import com.prodapt.projectAlpha.entity.UserRole;
 import com.prodapt.projectAlpha.exceptions.InvalidCredentialException;
 import com.prodapt.projectAlpha.service.UserPasswordService;
 
@@ -91,17 +92,20 @@ public class LoginController {
 	}
 	
 	@GetMapping("/updateform")
-	public String updateForm(@ModelAttribute("user") UserPassword up,@ModelAttribute("userdetail") UserDetails ud,@RequestParam("id") Long id)
+	public String updateForm(@ModelAttribute("user") UserPassword up,@ModelAttribute("userdetail") UserDetails ud,@ModelAttribute("userrole") UserRole ur,@RequestParam("id") Long id)
 	{
 		up.setUserId(id);
 		return "updateuser";
 	}
 	
 	@PostMapping(value = "/updateuser")
-	public ModelAndView updateUser(@ModelAttribute("user") UserPassword user,@ModelAttribute("userdetail") UserDetails ud)
+	public ModelAndView updateUser(@ModelAttribute("user") UserPassword user,@ModelAttribute("userrole") UserRole ur,@ModelAttribute("userdetail") UserDetails ud)
 	{
 		ModelAndView mv = new ModelAndView();
 		user.setUserDetails(ud);
+		Set<UserRole> userRoles = new HashSet<UserRole>();
+		userRoles.add(ur);
+		user.setRoles(userRoles);
 		ups.updateUserPassword(user);
 		mv.setViewName("redirect:/admin");
 		return mv;
