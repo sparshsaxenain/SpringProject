@@ -23,4 +23,6 @@ public interface UserPasswordService {
 	public String getUserRole(UserPassword user);
 	
 	public UserPassword loginUser(UserPassword user) throws InvalidCredentialException;
+	
+	public boolean userActive(UserPassword user);
 }

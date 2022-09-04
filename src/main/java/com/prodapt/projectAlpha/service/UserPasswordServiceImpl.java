@@ -26,9 +26,9 @@ public class UserPasswordServiceImpl implements UserPasswordService {
 //		List<UserPassword> id = userRepo.getUserMaxId();
 //		userRepo.setDefaultUser(id);
 		
-		List<UserPassword> users = getAllUsers();
-		int listlen = users.size();
-		UserPassword up = users.get(listlen-1);
+//		List<UserPassword> users = getAllUsers();
+//		int listlen = users.size();
+//		UserPassword up = users.get(listlen-1);
 //		Long id = up.getUserId();
 		Set<UserRole> userroles = new HashSet<UserRole>();
 		UserRole ur = new UserRole();
@@ -139,5 +139,17 @@ public class UserPasswordServiceImpl implements UserPasswordService {
 			users.add(usr);
 		}
 		return users;
+	}
+
+	@Override
+	public boolean userActive(UserPassword user) {
+		// TODO Auto-generated method stub
+		if(user.getIsActivated() == false)
+		{
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }

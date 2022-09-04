@@ -41,21 +41,21 @@ public class LoginController {
 			usr = ups.loginUser(up);
 			mv.addObject("userData", usr);
 //			if(usr.getRoles().stream().anyMatch(role -> role.getRole().equals("admin")))
-			if(ups.getUserRole(usr).equals("ADMIN"))
+			if(ups.getUserRole(usr).equals("ADMIN") && ups.userActive(usr))
 			{
+				
 				return "redirect:/admin";
 			}
-			else
+			else if(ups.getUserRole(usr).equals("USER") && ups.userActive(usr))
 			{
-				mv.setViewName("redirect:/user");
+				return "redirect:/user";
 			}
-			
 		}
 		catch (InvalidCredentialException e)
 		{
 			return "redirect:/invalidcredential";
 		}
-		return "redirect:/user";
+		return "redirect:/notactive";
 	}
 	
 	@GetMapping("/invalidcredential")
@@ -71,6 +71,14 @@ public class LoginController {
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user");
+		return mv;
+	}
+	
+	@GetMapping("/notactive")
+	public ModelAndView notactive()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("notactive");
 		return mv;
 	}
 	
